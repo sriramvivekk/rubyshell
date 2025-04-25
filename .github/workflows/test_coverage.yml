@@ -1,13 +1,15 @@
-name: Test Coverage
+name: CI Workflow
 
 on:
   push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  coverage:
+  build:
     runs-on: ubuntu-latest
 
     services:
@@ -32,15 +34,10 @@ jobs:
           ruby-version: '3.2.2'
           bundler-cache: true
 
-      - name: Set up PostgreSQL
-        run: |
-          sudo apt-get install -y postgresql-client
-          psql -h localhost -U postgres -d app_test -c 'SELECT 1'
-
       - name: Install dependencies
         run: |
-          bundle install
-          yarn install
+          gem install bundler -v 2.6.8
+          bundle install --no-frozen
 
       - name: Run database migrations
         run: docker-compose run web bin/rails db:create db:migrate
