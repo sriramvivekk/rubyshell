@@ -38,10 +38,10 @@ jobs:
           bundle install --no-frozen
 
       - name: Run database migrations
-        run: docker-compose run web bin/rails db:create db:migrate
+        run: docker compose run web bin/rails db:create db:migrate
 
       - name: Run tests with SimpleCov
-        run: docker-compose run web bundle exec rspec
+        run: docker compose run web bundle exec rspec
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
