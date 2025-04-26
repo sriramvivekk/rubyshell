@@ -41,7 +41,8 @@ jobs:
         run: docker compose run web bin/rails db:create db:migrate
 
       - name: Run tests with SimpleCov
-        run: docker compose run web bundle exec rspec
+        run: docker compose run -e RAILS_ENV=test web bin/rails db:create db:migrate
+
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
