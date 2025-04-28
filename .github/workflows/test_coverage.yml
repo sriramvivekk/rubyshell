@@ -1,0 +1,50 @@
+name: CI Workflow
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: rubyshell_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres" --health-timeout=5s --health-start-period=10s --health-interval=10s
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler -v 2.6.8
+          bundle install --no-frozen
+
+      - name: Run database migrations
+        run: docker compose run web bin/rails db:create db:migrate
+
+      - name: Run tests with SimpleCov
+        run: docker compose run -e RAILS_ENV=test web bin/rails db:create db:migrate
+
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
