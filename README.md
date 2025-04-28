@@ -1,24 +1,3 @@
-# README
+https://img.shields.io/codecov/c/github/sriramvivekk/https%3A%2F%2Fgithub.com%2Fsriramvivekk%2Frubyshell.git
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rubyshell project sells diamonds and gems.
