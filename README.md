@@ -1,3 +1,3 @@
-![Test Coverage](https://img.shields.io/codecov/c/github/sriramvivekk/https%3A%2F%2Fgithub.com%2Fsriramvivekk%2Frubyshell.git.svg?token=d4c8cf16-e154-484f-a758-52f8fc75011a)
+# My Project
 
-Rubyshell project sells diamonds and gems.
+[![Coverage Status](https://codecov.io/gh/sriramvivekk/rubyshell/branch/CICD/graph/badge.svg)](https://codecov.io/gh/sriramvivekk/rubyshell)
